@@ -500,6 +500,7 @@ func (conn *Connection) getDBServerTimeZone() {
 	err := conn.QueryRowContext(context.Background(), "SELECT SYSTIMESTAMP FROM DUAL", nil).Scan(&current)
 	if err != nil {
 		conn.dbServerTimeZone = time.UTC
+		return
 	}
 	conn.dbServerTimeZone = current.Location()
 }
