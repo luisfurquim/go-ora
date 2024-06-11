@@ -497,6 +497,7 @@ func (conn *Connection) OpenWithContext(ctx context.Context) error {
 
 func (conn *Connection) getDBServerTimeZone() {
 	var current time.Time
+	fmt.Printf("SYSTIMESTAMP\n")
 	err := conn.QueryRowContext(context.Background(), "SELECT SYSTIMESTAMP FROM DUAL", nil).Scan(&current)
 	if err != nil {
 		conn.dbServerTimeZone = time.UTC
